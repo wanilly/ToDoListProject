@@ -3,6 +3,7 @@ import java.util.Comparator;
 
 import com.todo.dao.TodoItem;
 
+// comparator 인터페이스 사용..
 public class TodoSortByName implements Comparator<TodoItem> {
 
     @Override
