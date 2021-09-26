@@ -41,6 +41,11 @@ public class TodoMain {
 			case "ls":
 				TodoUtil.listAll(l);
 				break;
+			
+			// 카테고리별 항목 , 중복되지 않도록 카테고리 종류 개수와 카테고리 가져오기
+			case "ls_cate":
+				TodoUtil.cateList(l);
+				break;
 
 			case "ls_name_asc":
 				l.sortByName();
@@ -59,6 +64,20 @@ public class TodoMain {
 				l.sortByDate();
 				System.out.println("\n날짜 순으로 정렬하였습니다.");
 				isList = true;
+				break;
+			
+			// 날짜 거꾸로 순으로 
+			case "ls_date_desc":
+				l.sortByDate();
+				l.reverseList();
+				System.out.println("\n날짜 역순으로 정렬하였습니다.");
+				isList = true;
+				break;
+				
+			// find function
+			case "find":
+				// TodoUtil.find 만들어서 구현해볼까? 
+				TodoUtil.find(l);
 				break;
 				
 			case "help":

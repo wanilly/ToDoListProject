@@ -7,14 +7,40 @@ public class TodoItem { // 멤버함수
     private String title;
     private String desc;
     private String current_date;  // current_date을 string 변경 (스트링)
+    private String cate;
+    private String due_date;
     
 
     // construct 생성자 
-    public TodoItem(String title, String desc){
+    public TodoItem(String cate, String title, String desc, String due_date){
+    	this.cate = cate;
         this.title=title;
         this.desc=desc;  
+        //SimpleDateFormat d = new SimpleDateFormat("yyyy/MM/dd");
+        //this.due_date = d.format(new Date());
+        this.due_date = due_date;
+        
         SimpleDateFormat f = new SimpleDateFormat("yyyy/MM/dd kk:mm:ss");  // import를 해주어야 함... 
         this.current_date = f.format(new Date());  // 생성자에서 SimpleDateFormat을 사용하여 문자열로 저
+        
+    }
+    
+    // 카테고리 추가함..
+    public String getCate() {
+    	return cate;
+    }
+    
+    public void setCate(String cate) {
+    	this.cate = cate;
+    }
+    
+    // 마감일 추가함..
+    public String getDueDate() {
+    	return due_date;
+    }
+    
+    public void setDueDate(String due_date) {
+    	this.due_date = due_date;
     }
     
     public String getTitle() {
@@ -40,15 +66,25 @@ public class TodoItem { // 멤버함수
     public void setCurrent_date(String current_date) {
         this.current_date = current_date;
     }
+    
    
     // 오버라이딩 화면상에 객체를 출력하기 위함...
     @Override
     public String toString() {
-    	return "[" + title + "] " + desc + " - " + current_date + "\n";  // 문자열...
+    	return "[" + cate + "] " + "<" + title + ">" + " - " + desc + " - " + due_date + " - " + current_date + "\n";  // 문자열...
     }
     
     public String toSaveString() {
-    	return title + "##" + desc + "##" + current_date + "\n";
+    	return cate + "##"+ title + "##" + desc + "##" + due_date + "##"+ current_date + "\n";
     }
+    
+    
+    /*
+    public String toFindString(TodoList l) {
+    	for (Toto)
+    	return ;
+    }
+    */
+    
 }
 
