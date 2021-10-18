@@ -2,19 +2,24 @@ package com.todo;
 
 
 import java.io.File;
+import java.text.ParseException;
 import java.util.Scanner;
 
+import com.todo.dao.TodoDueDate;
+import com.todo.dao.TodoItem;
 import com.todo.dao.TodoList;
 import com.todo.menu.Menu;
+import com.todo.service.TodoSystem;
 import com.todo.service.TodoUtil;
 
 public class TodoMain {
 	
-	public static void start() {
+	public static void start() throws ParseException {
 	
 		Scanner sc = new Scanner(System.in);
 		TodoList l = new TodoList();
-
+		TodoDueDate list = new TodoDueDate();
+		//TodoItem t= new TodoItem(0, null, null);
 		boolean isList = false;
 		boolean quit = false;
 		TodoUtil.loadList(l, "TodoList.txt");
@@ -37,6 +42,17 @@ public class TodoMain {
 			case "edit":
 				TodoUtil.updateItem(l);
 				break;
+				
+			case "com":
+				//String key = sc.nextLine().trim();
+				TodoSystem.complete(l);
+				break;
+			
+			case "ls_com":
+				// 완료 항목 리스트에 저장...
+				
+				TodoSystem.isComplete(l);
+				break;	
 				
 			case "ls":
 				TodoUtil.listAll(l);
@@ -80,6 +96,14 @@ public class TodoMain {
 				TodoUtil.find(l);
 				break;
 				
+			case "end":
+				//TodoSystem.checkSubject(l);
+				TodoSystem.stamps(l);
+			
+				TodoSystem.isdueDate(l);
+				System.out.println("오늘의 할일을 내일로 미루지 마세요!");
+				break;	
+				
 			case "help":
 				Menu.displaymenu();
 				break;
@@ -88,7 +112,7 @@ public class TodoMain {
 				System.out.println("\n프로그램을 종료합니다.\n");
 				quit = true;
 				break;
-
+			
 			default:
 				System.out.println("\n정확한 명령어를 입력하시오 (도움말 - help)");
 				break;
@@ -99,3 +123,5 @@ public class TodoMain {
 		TodoUtil.saveList(l, "TodoList.txt");
 	}
 }
+
+

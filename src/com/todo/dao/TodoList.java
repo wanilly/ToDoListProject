@@ -1,5 +1,8 @@
 package com.todo.dao;
 
+import java.text.ParseException;
+import java.util.Date;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 
@@ -9,10 +12,20 @@ import com.todo.service.TodoSortByName;
 public class TodoList { // list는 array 리스트로 되어있음...
 	private List<TodoItem> list;  // 하나의 객체를 가지고 있음...
 	
-
+	
+	
+	public void stamps(TodoItem t) {
+		list.add(t);
+		//return stamps;
+	}
+	public ArrayList<TodoItem> completedList() {
+		return new ArrayList<TodoItem>(list);
+	}
+	
 	public TodoList() {
 		this.list = new ArrayList<TodoItem>();
 	}
+	
 
 	public void addItem(TodoItem t) {
 		list.add(t);
@@ -66,9 +79,8 @@ public class TodoList { // list는 array 리스트로 되어있음...
 	public void sortByDate() {
 		Collections.sort(list, new TodoSortByDate());
 	}
-	
-	
 
+	
 	public int indexOf(TodoItem t) { // 객체가 몇 번째 있는지 알아
 		return list.indexOf(t);
 	}
